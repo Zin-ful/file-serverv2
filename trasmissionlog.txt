@@ -1,0 +1,202 @@
+<<HANDSHAKE SEND START>>
+handshake sent: 4 bytes sent to ('127.0.0.1', 55814)
+<<HANDSHAKE SEND END>>
+<<HANDSHAKE RECV START>>
+handshake recv:12 bytes recieved from ('127.0.0.1', 55814)
+<<HANDSHAKE RECV END>>
+<<CMD FROM CLIENT RECV>>
+command:b'list&&&<<<' recv from ('127.0.0.1', 55814), 10 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value
+
+
+
+sent to ('127.0.0.1', 55814) :: 98 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value&&&<<<
+
+
+
+sent to ('127.0.0.1', 55814) :: 98 bytes
+data type:()<<RESULT DATA END>>
+<<CMD FROM CLIENT RECV>>
+command:b'' recv from ('127.0.0.1', 55814), 0 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)
+
+
+
+sent to ('127.0.0.1', 55814) :: 70 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)&&&<<<
+
+
+
+sent to ('127.0.0.1', 55814) :: 70 bytes
+data type:()<<RESULT DATA END>>
+<<CMD FROM CLIENT RECV>>
+command:b'' recv from ('127.0.0.1', 55814), 0 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)
+
+
+
+sent to ('127.0.0.1', 55814) :: 70 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)&&&<<<
+
+
+
+sent to ('127.0.0.1', 55814) :: 70 bytes
+data type:()<<RESULT DATA END>>
+<<HANDSHAKE SEND START>>
+handshake sent: 4 bytes sent to ('127.0.0.1', 45306)
+<<HANDSHAKE SEND END>>
+<<HANDSHAKE RECV START>>
+handshake recv:12 bytes recieved from ('127.0.0.1', 45306)
+<<HANDSHAKE RECV END>>
+<<CMD FROM CLIENT RECV>>
+command:b'list&&&<<<' recv from ('127.0.0.1', 45306), 10 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value
+
+
+
+sent to ('127.0.0.1', 45306) :: 98 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value&&&<<<
+
+
+
+sent to ('127.0.0.1', 45306) :: 98 bytes
+data type:()<<RESULT DATA END>>
+<<CMD FROM CLIENT RECV>>
+command:b'print&&&<<<' recv from ('127.0.0.1', 45306), 11 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value
+
+
+
+sent to ('127.0.0.1', 45306) :: 98 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value&&&<<<
+
+
+
+sent to ('127.0.0.1', 45306) :: 98 bytes
+data type:()<<RESULT DATA END>>
+<<CMD FROM CLIENT RECV>>
+command:b'' recv from ('127.0.0.1', 45306), 0 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)
+
+
+
+sent to ('127.0.0.1', 45306) :: 70 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)&&&<<<
+
+
+
+sent to ('127.0.0.1', 45306) :: 70 bytes
+data type:()<<RESULT DATA END>>
+<<CMD FROM CLIENT RECV>>
+command:b'' recv from ('127.0.0.1', 45306), 0 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)
+
+
+
+sent to ('127.0.0.1', 45306) :: 70 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or not enough values to unpack (expected 2, got 1)&&&<<<
+
+
+
+sent to ('127.0.0.1', 45306) :: 70 bytes
+data type:()<<RESULT DATA END>>
+<<HANDSHAKE SEND START>>
+handshake sent: 4 bytes sent to ('127.0.0.1', 36848)
+<<HANDSHAKE SEND END>>
+<<HANDSHAKE RECV START>>
+handshake recv:12 bytes recieved from ('127.0.0.1', 36848)
+<<HANDSHAKE RECV END>>
+<<CMD FROM CLIENT RECV>>
+command:b'list&&&<<<' recv from ('127.0.0.1', 36848), 10 bytes recieved
+<<RECV CMD FROM CLIENT END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value
+
+
+
+sent to ('127.0.0.1', 36848) :: 98 bytes
+data type:('file data',)<<RESULT DATA END>>
+<<RESULT DATA BELOW>>
+
+
+
+might not have data or cannot access local variable 'cmd2' where it is not associated with a value&&&<<<
+
+
+
+sent to ('127.0.0.1', 36848) :: 98 bytes
+data type:()<<RESULT DATA END>>

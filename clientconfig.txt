@@ -1,0 +1,3 @@
+USERDIR@/home/raspi/Downloads::True
+IPADDR@localhost::True
+PORT@12345::True
