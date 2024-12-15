@@ -25,7 +25,7 @@ import cmdhandler as handle
 isloggedin = False
 byteformat = ''
 buffer = 64
-serverdir = '/home/raspi/file-server/server-and-modules/config/'
+serverdir = '/config/'
 ##IMPORTS ABOVE
 ##
 ##MISC FILE WRITES & OTHER START

@@ -6,9 +6,9 @@ import base64
 #no filtering since we have custom pseudo bash
 dirlist = []
 filecount = 0
-homedir = '/home/raspi/'
-userdir = '/home/raspi/'
-os.listdir(userdir)
+homedir = '/storage'
+userdir = '/storage'
+os.listdir()
 def get_client_from_server(clientip, clientport):
     global ipaddr,port
     ipaddr = clientip
@@ -36,11 +36,10 @@ def send(*file):
         filedata = base64.b64decode(filedata)
         with open(f'{userdir}{filename}', 'wb') as fileto:
             fileto.write(filename)
-        
         result = f'{filename} uploaded'
     else:
         result = 'upload failed'
-    return result 
+    return result
 def get (*filereq):
     global result
     filereq = str(filereq)
@@ -61,11 +60,9 @@ def get (*filereq):
     else:
         result = 'file not found'
     return result
-        
-        
 def currentdir():
     global result
-    result = userdir.replace('/home/raspi/', '')  
+    result = userdir
     return result
 def echo():
     global result
@@ -76,16 +73,14 @@ def change(*dir):
     if not any('/' in d for d in dir): #turns d into a list making any() applicable. iterates thru dir using d as the temp var
         result = 'directory not found, might be missing "/"'
     elif '/storage' in dir:
-        userdir = '/home/raspi/storage/'
-        userdirclean = str(userdir.replace('/home/raspi/', ''))
-        result = f'directory changed to {userdirclean}'
+        userdir = '/storage/'
+        result = f'directory changed to {userdir}'
     elif not '/storage' in dir:
         dir = str(dir)
         dir = dir.strip('()').strip(',').strip("'")
         userdir = homedir + str(dir)
         #refresh(os.listdir(userdir))
-        userdirclean = str(userdir.replace('/home/raspi/', '') )
-        result = f'directory changed to {userdirclean}'
+        result = f'directory changed to {userdir}'
     else:
         result = 'directory not found, might not exist'
 
@@ -99,11 +94,11 @@ def info(*information):
     global result
     command = cmd_info_dict.get(information) #returns none, dont know why
     result = command
-    return result   
+    return result
 def limit():
     global result
-    result = 'empty' 
-    return result   
+    result = 'empty'
+    return result
 def credits():
     global result
     result = 'made by cxsper and zinful'
@@ -118,7 +113,6 @@ def config():
     return result
     sys.exit()
 def userCmd(command, *param):
-    
     xcute = cmddict.get(command)
     global result
     if xcute:
