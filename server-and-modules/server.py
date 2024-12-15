@@ -1,3 +1,5 @@
+"""FAILING SOMEWHERE BEFORE OR IN CMD HANDLE"""
+"""ERROR: RESULT NOT DEFINED"""
 ###TODO###
 ###add text file download support (reading bytes and encoding fails)
 ###add upload support
@@ -25,7 +27,7 @@ import cmdhandler as handle
 isloggedin = False
 byteformat = ''
 buffer = 64
-serverdir = '/config/'
+serverdir = 'config/'
 ##IMPORTS ABOVE
 ##
 ##MISC FILE WRITES & OTHER START
@@ -158,8 +160,7 @@ def confirm_login(recvuser, recvpass):
 ##USER COMMAND START
 
 def cmd_from_client_recv():
-     global cmd
-     param = ''
+     global cmd, cmd2
      while True:
           client_socket.settimeout(None)
           try:
@@ -168,24 +169,27 @@ def cmd_from_client_recv():
                store_cmd(recvcmd)
                recvcmd = recvcmd.decode('utf-8') 
                cmd, end = recvcmd.strip().lower().split('&&&')
-               if '!:cmd:!' in cmd:
-                    cmd, *cmd2 = cmd.split('!:cmd:!')
-               print(cmd, *cmd2)
-                    
+               print(cmd)
+               if 'exit' in recvcmd:
+                    endpoint1.close()
+                    sys.exit()
+               elif '!:cmd:!' in cmd:
+                    cmd, cmd2 = cmd.split('!:cmd:!')
+                    print('cmd1-2: ', cmd, cmd2)
+               else:
+                   cmd2 = ''
+
                if cmd and '<<<' in end:
                     havedata = True
-                    print(cmd)
-                    xcmd = cmdpassdict.get(*cmd2)
-                    if xcmd:
-                         return xcute(*cmd2)
+                    print('cmd: ', cmd)
+                    if cmd2 == '':
+                        cmdresult = handle.cmdloop(cmd,*cmd2) #recvcmd not used so can be dropped
+                        print(f'param blank-- {handle.result}')
+                        cmd_to_client_send(handle.result)
                     else:
-                         if param == '':
-                              cmdresult = handle.cmdloop(cmd, *cmd2) #recvcmd not used so can be dropped
-                              cmd_to_client_send(handle.result)
-                         else:
-                              cmdresult = handle.cmdloop(cmd) #all cmd handler
-                              cmd_to_client_send(handle.result)
-                              param = ''
+                        cmdresult = handle.cmdloop(cmd, cmd2) #all cmd handler
+                        print(f'param-- {handle.result}')
+                        cmd_to_client_send(handle.result)
              
           except Exception as e:
                havedata = False
@@ -196,7 +200,7 @@ def cmd_to_client_send(res):
      store_res(res, 'file data')
      end = '<<<'
      if '<filename>' in res:
-          res = res + "&&&" + end
+          res = str(res) + "&&&" + end
           client_socket.sendall(res.encode('utf-8'))
           
           

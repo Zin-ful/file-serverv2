@@ -6,8 +6,8 @@ import base64
 #no filtering since we have custom pseudo bash
 dirlist = []
 filecount = 0
-homedir = '/storage'
-userdir = '/storage'
+homedir = 'storage'
+userdir = 'storage'
 os.listdir()
 def get_client_from_server(clientip, clientport):
     global ipaddr,port
@@ -48,7 +48,7 @@ def get (*filereq):
     filelist = os.listdir(userdir)
     print(filelist)
     if not any('/' in d for d in filename): #turns d into a list making any() applicable. iterates thru dir using d as the temp var
-        filename = '/' + filename
+        filename = '/' + str(filename)
     if any(filename in files for files in filelist):#file check to make sure exist
         try:
                 with open(to_down, 'rb') as file:
@@ -71,7 +71,7 @@ def echo():
 def change(*dir):
     global result, userdir
     if not any('/' in d for d in dir): #turns d into a list making any() applicable. iterates thru dir using d as the temp var
-        result = 'directory not found, might be missing "/"'
+        dir = '/'+ str(dir)
     elif '/storage' in dir:
         userdir = '/storage/'
         result = f'directory changed to {userdir}'
