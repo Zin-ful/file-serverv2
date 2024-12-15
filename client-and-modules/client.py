@@ -4,17 +4,19 @@ import sys
 import time
 import socket as netcom
 import base64
+import os
+
+os.listdir()
 print('client imported')
 def config():
     global setuserdir, setip, setport
     setuserdir = input('where do you want files to be downloaded? (full system path)\n ')
     setip = input('what is the server IP Address?\n ')
     setport = input('what is the server port?\n ')
-    with open('/home/raspi/file-server/client-and-modules/config/config.txt', 'w') as configfile:
+    with open('/config/config.txt', 'w') as configfile:
         configfile.write(f'USERDIR@{setuserdir}::True\n') # open file as write since we want to overwrite old config
         configfile.write(f'IPADDR@{setip}::True\n')
         configfile.write(f'PORT@{setport}::True\n')
-    
 
 ## Does this check on every start up, lets the user have more control
 ## without reprompting on boot
@@ -23,7 +25,7 @@ def config():
 def configread():
     global getip, getport, getdir
     truecount = 0
-    with open ('/home/raspi/file-server/client-and-modules/config/clientconfig.txt', 'r') as configcheck:
+    with open ('/config/clientconfig.txt', 'r') as configcheck:
         configdata = configcheck.readlines()
         if configdata == []:
             config()
@@ -42,12 +44,8 @@ def configread():
                             getport = setdata.replace('PORT@', '')
             else:
                 config()
-    
-
- 
-
 def reconnect():
-    return 
+    return
 def getCmd():
     return
 def sendCmd():
@@ -61,30 +59,28 @@ def sendCmd():
             config()
             print('will have to exit to enact change\nexiting in 5')
             a = 'exit'
-            
             connection1.send(a.encode('utf-8'))
             time.sleep(5)
-        userinput = userinput + '&&&' + end   
+        userinput = userinput + '&&&' + end
         connection1.send(userinput.encode('utf-8'))
         while True:
             try:
                 recvresult = connection1.recv(100000000)
                 recvresult = recvresult.decode('utf-8')
-                with open('/home/raspi/file-server/client-and-modules/config/errorlog.txt', 'a') as log:
+                with open('/config/errorlog.txt', 'a') as log:
                     log.write(f'recvresult\n') 
                 print('passed decode')
                 recvresult, end = recvresult.split('&&&')
                 print('passed strip/split')
                 recvresult = recvresult.strip()
-                
                 if '!:fileinfo:!' in recvresult and '<<<' in end:
                     file = recvresult
                     filename, filedata = file.split('!:fileinfo:!') #change this so the filename and format are one string, also for updated server command processing
-                    filedata = base64.b64decode(filedata) 
+                    filedata = base64.b64decode(filedata)
                     with open(f'{getdir}{filename}{format}', 'wb') as downfile:
                         downfile.write(filedata)
                     print(f'file downloade in {getdir}\nto change target directory use "config"')
-                    
+
                 elif '!:sendfileinfo:!' in recvresult and '<<<' in end:
                     global sendfile
                     sentfile = input('What file?')
@@ -94,17 +90,16 @@ def sendCmd():
                         filetosend = base64.b64encode(filetosend).decode('utf-8') #change format to have 
                         sendfile = f'{filename}<filename>{filetosend}<filesend>.{format}'
                         connection1.send(sendfile.encode('utf-8'))
-                        
+
                 elif recvresult and '<<<' in end:
                     print(recvresult)
                     break
             except Exception as e:
                 print ('no data\n',e)
-                with open('/home/raspi/file-server/client-and-modules/config/errorlog.txt', 'a') as log:
+                with open('/config/errorlog.txt', 'a') as log:
                     log.write(str(f'<<EXCEPTION>>\n{e}\n<<CMD>>\n{userinput}\n<<CMD>>\n'))
                 break
-    
-    
+
 def connect_to_Host():
     confirmrecv = ''
     confirmsend = ''
@@ -124,7 +119,6 @@ def connect_to_Host():
         if not confirmrecv:
             print('no data recv')
         print('Auth failure')
-    
     if 'True' in confirmrecv:
         print('connected')
         try:
@@ -144,13 +138,8 @@ def connect_to_Host():
         isloggedin = isloggedin.decode('utf-8')
         if 'True' in isloggedin:
             return
-        
     else:
         print('failed, no True in confirmrecv')
-        
-
-        
-
 connection1 = netcom.socket(ipv4, tcp) 
 configread()
 connect_to_Host()
