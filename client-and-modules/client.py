@@ -13,7 +13,7 @@ def config():
     setuserdir = input('where do you want files to be downloaded? (full system path)\n ')
     setip = input('what is the server IP Address?\n ')
     setport = input('what is the server port?\n ')
-    with open('/config/config.txt', 'w') as configfile:
+    with open('config/clientconfig.txt', 'w') as configfile:
         configfile.write(f'USERDIR@{setuserdir}::True\n') # open file as write since we want to overwrite old config
         configfile.write(f'IPADDR@{setip}::True\n')
         configfile.write(f'PORT@{setport}::True\n')
@@ -25,7 +25,7 @@ def config():
 def configread():
     global getip, getport, getdir
     truecount = 0
-    with open ('/config/clientconfig.txt', 'r') as configcheck:
+    with open ('config/clientconfig.txt', 'r') as configcheck:
         configdata = configcheck.readlines()
         if configdata == []:
             config()
@@ -54,6 +54,9 @@ def sendCmd():
         userinput = input('>>>') #send file here to proccess encoding
         end = '<<<'
         if 'exit' in userinput:
+            a = "exit&&&<<<"
+            connection1.send(a.encode('utf-8'))
+            time.sleep(1)
             sys.exit()
         elif 'config' in userinput:
             config()
@@ -61,13 +64,17 @@ def sendCmd():
             a = 'exit'
             connection1.send(a.encode('utf-8'))
             time.sleep(5)
+
+        if ' ' in userinput:
+            inp1, inp2 = userinput.split(' ')
+            userinput = inp1 + '!:cmd:!' + inp2
         userinput = userinput + '&&&' + end
         connection1.send(userinput.encode('utf-8'))
         while True:
             try:
                 recvresult = connection1.recv(100000000)
                 recvresult = recvresult.decode('utf-8')
-                with open('/config/errorlog.txt', 'a') as log:
+                with open('config/errorlog.txt', 'a') as log:
                     log.write(f'recvresult\n') 
                 print('passed decode')
                 recvresult, end = recvresult.split('&&&')
@@ -96,7 +103,7 @@ def sendCmd():
                     break
             except Exception as e:
                 print ('no data\n',e)
-                with open('/config/errorlog.txt', 'a') as log:
+                with open('config/errorlog.txt', 'a') as log:
                     log.write(str(f'<<EXCEPTION>>\n{e}\n<<CMD>>\n{userinput}\n<<CMD>>\n'))
                 break
 
